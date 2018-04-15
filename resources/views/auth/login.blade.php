@@ -15,17 +15,6 @@
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <div class="col-md-5">
-                                    <div class="social text-center">
-                                        <button class="btn btn-just-icon btn-round btn-twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </button>
-                                        <button class="btn btn-just-icon btn-round btn-dribbble">
-                                            <i class="fa fa-dribbble"></i>
-                                        </button>
-                                        <button class="btn btn-just-icon btn-round btn-facebook">
-                                            <i class="fa fa-facebook"> </i>
-                                        </button>
-                                    </div>
                                     <form class="form" method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
@@ -35,7 +24,7 @@
                                                         <i class="material-icons">mail</i>
                                                     </span>
                                                 </div>
-                                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Email..." value="{{ old('email') }}" required autofocus>
+                                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Correo Electronico..." value="{{ old('email') }}" required autofocus>
                                                 @if ($errors->has('email'))
                                                     <span class="invalid-feedback">
                                                         <strong>{{ $errors->first('email') }}</strong>
@@ -50,7 +39,7 @@
                                                         <i class="material-icons">lock_outline</i>
                                                     </span>
                                                 </div>
-                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password..." required>
+                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Contraseña..." required>
                                                 @if ($errors->has('password'))
                                                     <span class="invalid-feedback">
                                                         <strong>{{ $errors->first('password') }}</strong>
