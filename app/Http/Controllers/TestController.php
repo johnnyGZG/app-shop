@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class TestController extends Controller
 {
     public function welcome()
     {
-    	$a = 5;
-    	$b = 45;
-    	$c = $a + $b;
-    	return 'La suma total es de '. $c;
+    	// listar todos los productos
+    	$products = Product::all();
+
+    	// Inyectar datos de Productos en un array asociativo
+    	return view('welcome')->with(compact('products'));
     }
 }
