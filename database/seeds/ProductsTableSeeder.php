@@ -14,8 +14,33 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
+        /*
     	factory(Category::class, 5)->create();
         factory(Product::class, 100)->create();
         factory(product_image::class, 200)->create();
+        */
+
+        // Se crean 5 categorias gracias al facoty
+        $categories = factory(Category::class, 5)->create();
+
+        // Se recorre cada categoria creada
+        $categories->each(function ($category) {
+
+            // Se crean 20 productos asociada a la categoria 
+            $products = factory(Product::class, 20)->make();
+
+            // Se crean los productos con la ralacion con la cateoria
+            $category->products()->saveMany($products);
+
+            // Se recorren los 20 productos creados para cada categoria
+            $products->each(function ($p){
+
+                // Se generan 50 imagenes por producto
+                $images = factory(product_image::class, 50)->make();
+
+                // Se guardan las 50 imagenes ya relacionadas con cada producto
+                $p->images()->saveMany($images);
+            });
+        });
     }
 }
