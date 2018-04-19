@@ -17,7 +17,12 @@
                     Listado de Productos
                 </h2>
                 <div class="team">
-                    <div class="row">
+                    <div class="row justify-content-center">
+
+                        <a href="{{ url('/admin/products/create') }}" class="btn btn-primary btn-round">
+                            Nuevo Producto
+                        </a>
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -32,12 +37,14 @@
                             <tbody>
                                 @foreach($products as $product)
                                     <tr>
-                                        <td class="text-center">1</td>
+                                        <td class="text-center">
+                                            {{ $product->id }}
+                                        </td>
                                         <td>
                                             {{ $product->name }}
                                         </td>
                                         <td>
-                                            {{ $product->category->name }}
+                                            {{ $product->category ? $product->category->name : 'General' }}
                                         </td>
                                         <td>
                                             2013
@@ -46,20 +53,27 @@
                                             {{ $product->price }}
                                         </td>
                                         <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
-                                                <i class="material-icons">person</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Editar Producto">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" class="btn btn-danger"data-toggle="tooltip" data-placement="top" title="Eliminar Producto" >
-                                                <i class="material-icons">close</i>
-                                            </button>
+                                            <form method="POST" action="{{ url('/admin/products/'.$product->id) }}">
+                                                @csrf
+                                                {{ method_field('DELETE') }}
+                                                <a href="#" rel="tooltip" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
+                                                    <i class="material-icons">person</i>
+                                                </a>
+                                                <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Editar Producto">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                                <button type="submit" rel="tooltip" class="btn btn-danger"data-toggle="tooltip" data-placement="top" title="Eliminar Producto" >
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        
+                        {{-- Muestra los link de paginacion --}}
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>
