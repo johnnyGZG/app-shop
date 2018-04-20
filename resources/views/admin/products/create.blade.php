@@ -17,6 +17,18 @@
                 <h2 class="title text-center">
                     Crear Nuevo Productos
                 </h2>
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 
                 <form method="POST" action="{{ url('/admin/products') }}" >
                     @csrf
@@ -27,7 +39,7 @@
                                 <label for="nomProduct" class="bmd-label-floating">
                                     Nombre del producto
                                 </label>
-                                <input type="text" class="form-control" id="nomProduct" name="name">
+                                <input type="text" class="form-control" id="nomProduct" name="name" value="{{ old('name') }}">
                             </div>
                         </div>
 
@@ -36,7 +48,7 @@
                                 <label for="precioProduct" class="bmd-label-floating">
                                     Precio del Producto
                                 </label>
-                                <input type="number" class="form-control" id="precioProduct" name="price">
+                                <input type="number" class="form-control" id="precioProduct" name="price" value="{{ old('price') }}">
                             </div>
                         </div>
                     </div>
@@ -47,12 +59,12 @@
                                 <label for="decripProduct" class="bmd-label-floating">
                                     Descripción corta
                                 </label>
-                                <input type="text" class="form-control" id="decripProduct" name="description">
+                                <input type="text" class="form-control" id="decripProduct" name="description" value="{{ old('description') }}">
                             </div>
                         </div>
                     </div>
 
-                    <textarea class="form-control" placeholder="Descripción extensa del producto" rows="5" name="long_description"></textarea>
+                    <textarea class="form-control" placeholder="Descripción extensa del producto" rows="5" name="long_description">{{ old('long_description')</textarea>
 
                     <button type="submit" class="btn btn-primary">
                         Registrar Producto
