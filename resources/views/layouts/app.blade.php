@@ -9,7 +9,7 @@
     <link rel="apple-touch-icon" href="../assets/img/kit/free/apple-icon.png">
     <link rel="icon" href="../assets/img/kit/free/favicon.png">
     <title>
-        @yield('title', 'App Shop')
+        App-Shop | @yield('title', 'App Shop')
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -53,6 +53,12 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @if(auth()->user()->admin)
+                                    <a class="dropdown-item" href="{{ url('/admin/products') }}">
+                                        Gestionar Productos
+                                    </a>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

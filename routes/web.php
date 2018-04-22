@@ -7,12 +7,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Se aplican dos middleware el de auth (por defecto en Laravel) y admin (Creado por comando)
+// Se Agrega un prefix texto en comun para el inicio de la rutas del administrador
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+	require_once(__DIR__."/admin/products.php");
+});
 
-Route::get('/admin/products', 'ProductController@index'); // listado
-Route::get('/admin/products/create', 'ProductController@create'); // formulario
-Route::post('/admin/products', 'ProductController@store'); // registrar
 
-Route::get('/admin/products/{id}/edit', 'ProductController@edit'); // formulario edicion
-Route::post('/admin/products/{id}', 'ProductController@update'); // actualizar
 
-Route::delete('/admin/products/{id}', 'ProductController@destory'); // Eliminar
+// PUT PATCH DELETE

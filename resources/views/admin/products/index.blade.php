@@ -26,43 +26,46 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
-                                    <th>Nombre</th>
-                                    <th>Categoria</th>
-                                    <th>Destacado</th>
-                                    <th class="text-right">Precio</th>
-                                    <th class="text-right">Operaciones</th>
+                                    <th class="col-ms-1 text-cneter">#</th>
+                                    <th class="col-md-3 text-center">Nombre</th>
+                                    <th class="col-md-2 text-center">Categoria</th>
+                                    <th class="col-md-1 text-center">Destacado</th>
+                                    <th class="col-ms-2 text-center">Precio</th>
+                                    <th class="col-ms-3 text-center">Operaciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($products as $product)
                                     <tr>
-                                        <td class="text-center">
+                                        <td class="col-ms-1 text-cneter">
                                             {{ $product->id }}
                                         </td>
-                                        <td>
+                                        <td class="col-md-3 text-center">
                                             {{ $product->name }}
                                         </td>
-                                        <td>
+                                        <td class="col-md-2 text-center">
                                             {{ $product->category ? $product->category->name : 'General' }}
                                         </td>
-                                        <td>
+                                        <td class="col-md-1 text-center">
                                             2013
                                         </td>
-                                        <td class="text-right">&euro; 
+                                        <td class="col-ms-2 text-center">$ 
                                             {{ $product->price }}
                                         </td>
-                                        <td class="td-actions text-right">
+                                        <td class="td-actions col-ms-3 text-center">
                                             <form method="POST" action="{{ url('/admin/products/'.$product->id) }}">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <a href="#" rel="tooltip" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
-                                                    <i class="material-icons">person</i>
+                                                <a href="#" rel="tooltip" class="btn btn-info btn-link" data-toggle="tooltip" data-placement="top" title="Ver Producto">
+                                                    <i class="material-icons">info</i>
                                                 </a>
-                                                <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Editar Producto">
+                                                <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" class="btn btn-success btn-link" data-toggle="tooltip" data-placement="top" title="Editar Producto">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <button type="submit" rel="tooltip" class="btn btn-danger"data-toggle="tooltip" data-placement="top" title="Eliminar Producto" >
+                                                <a href="{{ url('/admin/products/'.$product->id.'/images') }}" rel="tooltip" class="btn btn-warning btn-link" data-toggle="tooltip" data-placement="top" title="Imagenes del Producto">
+                                                    <i class="material-icons">image</i>
+                                                </a>
+                                                <button type="submit" rel="tooltip" class="btn btn-danger btn-link" data-toggle="tooltip" data-placement="top" title="Eliminar Producto" >
                                                     <i class="material-icons">close</i>
                                                 </button>
                                             </form>
@@ -81,40 +84,6 @@
         </div>
     </div>
 
-    <footer class="footer ">
-        <div class="container">
-            <nav class="pull-left">
-                <ul>
-                    <li>
-                        <a href="https://www.creative-tim.com">
-                            Creative Tim
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://presentation.creative-tim.com">
-                            About Us
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://blog.creative-tim.com">
-                            Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.creative-tim.com/license">
-                            Licenses
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright pull-right">
-                &copy;
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>, made with <i class="material-icons">favorite</i> by
-                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-            </div>
-        </div>
-    </footer>
+    @include('includes.footer')
 
 @endsection
