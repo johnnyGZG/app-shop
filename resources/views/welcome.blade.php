@@ -91,7 +91,8 @@
                                 <div class="team-player">
                                     <div class="card card-plain">
                                         <div class="col-md-6 ml-auto mr-auto">
-                                            <img src="{{ $product->images()->first()->image }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                            {{-- Campo calculado desde el modelo de product --}}
+                                            <img src="{{ $product->featured_image_url }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                                         </div>
                                         <h4 class="card-title">{{ $product->name }}
                                             <br>
