@@ -10,3 +10,5 @@
 	Route::get('/products/{id}/images', 'ImageController@index'); // listado
 	Route::post('/products/{id}/images', 'ImageController@store'); // Registrar
 	Route::delete('/products/{id}/images', 'ImageController@destroy'); // Eliminar
+
+	Route::get('/products/{id}/images/select/{image}', 'ImageController@select'); // Destacar imagen

@@ -12,7 +12,7 @@ class ImageController extends Controller
     public function index($id) // Listar
     {
     	$product = Product::find($id);
-    	$images = $product->images;
+    	$images = $product->images()->orderBy('featured', 'desc')->get(); // Ordenar registros
     	return view('admin.products.images.index')->with(compact('product', 'images'));
     }
 
@@ -58,5 +58,19 @@ class ImageController extends Controller
     	}
 
     	return back();
+    }
+
+    public function select ($id, $image)
+    {
+        // Busca todas las imagenes asociadas a un producto y actuliza su campo para todos los registros encontrados
+        product_image::where('product_id', $id)->update([
+            'featured' => false
+        ]);
+
+        $imageProduct = product_image::find($image);
+        $imageProduct->featured = true;
+        $imageProduct->save();
+
+        return back();
     }
 }

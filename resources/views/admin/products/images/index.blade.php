@@ -46,6 +46,17 @@
                                     <button type="submit" class="btn btn-danger btn-round">
                                         Eliminar Imagen
                                     </button>
+                                    @if ($image->featured)
+                                        <button type="button" class="btn btn-info btn-fab btn-round" data-toggle="tooltip" data-placement="top" title="Imagen destacada">
+                                            <i class="material-icons">favorite</i>
+                                            <div class="ripple-container"></div>
+                                        </button>
+                                    @else
+                                        <a href="{{ url('/admin/products/'.$product->id.'/images/select/' . $image->id) }}" class="btn btn-primary btn-fab btn-round">
+                                            <i class="material-icons">favorite</i>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    @endif
                                 </form>
                             </div>
                         </div>
