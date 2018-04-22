@@ -19,9 +19,9 @@
                 
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form method="POST" action="" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="photo" required />
+                            <input type="file" name="photo" required accept=".jpg, .jpeg, .png" />
                             <button type="submit" class="btn btn-primary btn-round">
                                 Subir nueva Imagen
                             </button>
@@ -37,7 +37,8 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <img src="{{ $image->image }}" />
+                                {{-- Campos calculado desde el modelo product_image --}}
+                                <img src="{{ $image->url }}" />
                                 <button type="submit" class="btn btn-danger btn-round">
                                     Eliminar Imagen
                                 </button>
