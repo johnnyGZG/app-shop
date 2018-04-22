@@ -39,9 +39,14 @@
                             <div class="card-body">
                                 {{-- Campos calculado desde el modelo product_image --}}
                                 <img src="{{ $image->url }}" />
-                                <button type="submit" class="btn btn-danger btn-round">
-                                    Eliminar Imagen
-                                </button>
+                                <form method="POST" action="">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <input type="hidden" name="image_id" value={{ $image->id }}>
+                                    <button type="submit" class="btn btn-danger btn-round">
+                                        Eliminar Imagen
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
