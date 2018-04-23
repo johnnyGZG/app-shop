@@ -21,13 +21,13 @@ class ProductsTableSeeder extends Seeder
         */
 
         // Se crean 5 categorias gracias al facoty
-        $categories = factory(Category::class, 5)->create();
+        $categories = factory(Category::class, 4)->create();
 
         // Se recorre cada categoria creada
         $categories->each(function ($category) {
 
             // Se crean 20 productos asociada a la categoria 
-            $products = factory(Product::class, 20)->make();
+            $products = factory(Product::class, 5)->make();
 
             // Se crean los productos con la ralacion con la cateoria
             $category->products()->saveMany($products);
@@ -36,7 +36,7 @@ class ProductsTableSeeder extends Seeder
             $products->each(function ($p){
 
                 // Se generan 50 imagenes por producto
-                $images = factory(product_image::class, 50)->make();
+                $images = factory(product_image::class, 3)->make();
 
                 // Se guardan las 50 imagenes ya relacionadas con cada producto
                 $p->images()->saveMany($images);

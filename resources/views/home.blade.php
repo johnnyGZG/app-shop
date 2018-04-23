@@ -25,7 +25,7 @@
 
                     <ul class="nav nav-pills nav-pills-icons" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab">
+                            <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
                                 <i class="material-icons">dashboard</i>
                                 CARRITO DE COMPRAS 
                             </a>
@@ -37,6 +37,14 @@
                             </a>
                         </li>
                     </ul>
+
+                    @foreach (auth()->user()->cart->details as $detail)
+                        <ul>
+                            <li>
+                                {{ $detail }}
+                            </li>
+                        </ul>
+                    @endforeach
 
                 </div>
             </div>

@@ -94,9 +94,13 @@
                                             {{-- Campo calculado desde el modelo de product --}}
                                             <img src="{{ $product->featured_image_url }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                                         </div>
-                                        <h4 class="card-title">{{ $product->name }}
+                                        <h4 class="card-title">
+                                            <a href="{{ url('/products/'.$product->id) }}" >
+                                                {{ $product->name }}
+                                            
                                             <br>
                                             <small class="card-description text-muted">{{ $product->category->name }}</small>
+                                            </a>
                                         </h4>
                                         <div class="card-body">
                                             <p class="card-description">
@@ -104,14 +108,15 @@
                                             </p>
                                         </div>
                                         <div class="card-footer justify-content-center">
-                                            <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
-                                            <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i></a>
-                                            <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="row justify-content-center">
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>

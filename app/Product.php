@@ -38,6 +38,6 @@ class Product extends Model
         }
 
         // default
-        return public_path() . '/images/default_product.png';
+        return '/images/default_product.png';
     }
 }
