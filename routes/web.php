@@ -10,6 +10,8 @@ Route::get('/products/{id}', 'ProductController@show');
 Route::post('/cart', 'CartDetailController@store');
 Route::delete('/cart', 'CartDetailController@destroy');
 
+Route::post('/order', 'CartController@update');
+
 // Se aplican dos middleware el de auth (por defecto en Laravel) y admin (Creado por comando)
 // Se Agrega un prefix texto en comun para el inicio de la rutas del administrador
 /* Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {

@@ -91,7 +91,15 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    
+                    <form method="POST" action="{{ url('/order') }}">
+                        @csrf
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-round">
+                                <i class="material-icons">done</i> Realizar pedido
+                            </button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
