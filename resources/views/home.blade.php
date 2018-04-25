@@ -38,13 +38,54 @@
                         </li>
                     </ul>
 
-                    @foreach (auth()->user()->cart->details as $detail)
-                        <ul>
-                            <li>
-                                {{ $detail }}
-                            </li>
-                        </ul>
-                    @endforeach
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-cneter">#</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">SubTotal</th>
+                                <th class="text-center">Operaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (auth()->user()->cart->details as $detail)
+                                <tr>
+                                    <td class="text-cneter">
+                                        <img src="{{ $detail->product->featured_image_url }}" height="50" />
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{ url('/products/'.$detail->product->id) }}">
+                                            {{ $detail->product->name }}
+                                        </a>
+                                    </td>
+                                    <td class="text-center">$ 
+                                        {{ $detail->product->price }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $detail->quantity }}
+                                    </td>
+                                    <td class="text-center">
+                                        $ {{ $detail->quantity * $detail->product->price }}
+                                    </td>
+                                    <td class="td-actions text-center">
+                                        <form method="POST" action="{{ url('/admin/products/'.$detail->product->id) }}">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <a href="{{ url('/products/'.$detail->product->id) }}" rel="tooltip" class="btn btn-info btn-link" data-toggle="tooltip" data-placement="top" title="Ver Producto">
+                                                <i class="material-icons">info</i>
+                                            </a>
+                                            <button type="submit" rel="tooltip" class="btn btn-danger btn-link" data-toggle="tooltip" data-placement="top" title="Eliminar Producto" >
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
 
                 </div>
             </div>
