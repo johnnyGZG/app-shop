@@ -19,7 +19,9 @@ class CartDetailController extends Controller
     	$cartDetail->quantity =  $request->quantity;
     	$cartDetail->save();
 
-    	return back();
+        // Notificaciones usando Flash Data
+        $notification = 'El producto se ha cargado a tu carrito de compras exitotamente';
+    	return back()->with(compact('notification'));
     }
 
     public function destroy(Request $request)
@@ -32,6 +34,8 @@ class CartDetailController extends Controller
             $cartDetail->delete();
         }
 
-        return back();
+        // Notificaciones usando Flash Data
+        $notification = 'El producto se ha eliminado del carrito de compras correctamente';
+        return back()->with(compact('notification'));
     }
 }
