@@ -25,7 +25,12 @@ class CartDetailController extends Controller
     public function destroy(Request $request)
     {
         $cartDetail = CartDetail::find($request->cart_detail_id);
-        $cartDetail->delete();
+
+        // Comprueba si el carrito de compras pertenese al usuario logueado
+        if( $cartDetail->cart_id === auth()->user()->cart->id )
+        {
+            $cartDetail->delete();
+        }
 
         return back();
     }
